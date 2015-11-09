@@ -96,5 +96,8 @@ USER jvasquez
 RUN mkdir /home/jvasquez/mnt
 VOLUME /home/jvasquez/mnt
 
+# Just mount in .ssh (and its keys) from the host for ease ========
+VOLUME /home/jvasquez/.ssh
+
 # The actual dotfiles =============================================
 ADD . /home/jvasquez
