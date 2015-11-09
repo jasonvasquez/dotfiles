@@ -1,0 +1,4 @@
+.dockerignore
+build.sh
+run.sh
+Dockerfile
