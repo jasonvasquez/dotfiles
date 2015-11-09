@@ -73,8 +73,8 @@ RUN /bin/zsh --interactive -c 'rbenv global 2.2.3'
 RUN /bin/zsh --interactive -c 'gem install bundler'
 
 
-# # Node dev environment ==========================================
-# # (based around nodenv)
+# Node dev environment ==========================================
+# (based around nodenv)
 RUN \
   git clone https://github.com/OiNutter/nodenv.git ~/.nodenv && \
   echo 'export PATH="$HOME/.nodenv/bin:$PATH"' >> ~/.zshrc && \
@@ -84,5 +84,17 @@ RUN /bin/zsh --interactive -c 'git clone https://github.com/OiNutter/node-build.
 RUN /bin/zsh --interactive -c 'nodenv install 4.2.2'
 RUN /bin/zsh --interactive -c 'nodenv global 4.2.2'
 
-# # The actual dotfiles
-# ADD . /home/jvasquez
+
+# sudo support ===================================================
+USER root
+RUN apt-get -y install sudo
+RUN echo "jvasquez ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+USER jvasquez
+
+
+# a mountpoint for persistent data ================================
+RUN mkdir /home/jvasquez/mnt
+VOLUME /home/jvasquez/mnt
+
+# The actual dotfiles =============================================
+ADD . /home/jvasquez
