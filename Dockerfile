@@ -91,6 +91,12 @@ RUN apt-get -y install sudo
 RUN echo "jvasquez ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 USER jvasquez
 
+# got the basics out of the way, add in zsh script loading ========
+RUN \
+  mkdir ~/.zsh.d && \
+  echo "for file in ~/.zsh.d/*.zsh; do" >> ~/.zshrc && \
+  echo '  source "$file"' >> ~/.zshrc && \
+  echo "done" >> ~/.zshrc
 
 # a mountpoint for persistent data ================================
 RUN mkdir /home/jvasquez/mnt
