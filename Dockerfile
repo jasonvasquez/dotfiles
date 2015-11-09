@@ -75,15 +75,14 @@ RUN /bin/zsh --interactive -c 'gem install bundler'
 
 # # Node dev environment ==========================================
 # # (based around nodenv)
-# RUN \
-#   git clone https://github.com/OiNutter/nodenv.git ~/.nodenv && \
-#   echo 'export PATH="$HOME/.nodenv/bin:$PATH"' >> ~/.zshrc && \
-#   echo 'eval "$(nodenv init -)"' >> ~/.zshrc && \
-#   exec /bin/zsh && \
-#   \
-#   git clone https://github.com/OiNutter/node-build.git $(nodenv root)/plugins/node-build && \
-#   rehash
+RUN \
+  git clone https://github.com/OiNutter/nodenv.git ~/.nodenv && \
+  echo 'export PATH="$HOME/.nodenv/bin:$PATH"' >> ~/.zshrc && \
+  echo 'eval "$(nodenv init -)"' >> ~/.zshrc
 
+RUN /bin/zsh --interactive -c 'git clone https://github.com/OiNutter/node-build.git $(nodenv root)/plugins/node-build'
+RUN /bin/zsh --interactive -c 'nodenv install 4.2.2'
+RUN /bin/zsh --interactive -c 'nodenv global 4.2.2'
 
 # # The actual dotfiles
 # ADD . /home/jvasquez
