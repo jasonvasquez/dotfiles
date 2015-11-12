@@ -110,9 +110,4 @@ ADD . /home/jvasquez
 USER root
 RUN chown -R jvasquez:jvasquez /home/jvasquez
 
-# Cheater area... will roll up top soon
-
-
-
-
 USER jvasquez
