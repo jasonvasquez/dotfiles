@@ -11,7 +11,6 @@ RUN apt-get -y upgrade
 # Packages ==============================================
 RUN apt-get -y install \
   build-essential \
-  build-essential \
   curl \
   git \
   git-flow \
@@ -25,6 +24,7 @@ RUN apt-get -y install \
   libyaml-dev \
   openjdk-8-jdk \
   python-software-properties \
+  silversearcher-ag \
   sqlite3 \
   vim \
   wget \
@@ -111,7 +111,6 @@ USER root
 RUN chown -R jvasquez:jvasquez /home/jvasquez
 
 # Cheater area... will roll up top soon
-RUN apt-get install silversearcher-ag
 
 
 
